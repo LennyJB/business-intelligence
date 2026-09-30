@@ -10,8 +10,8 @@ data/bronze/raw_json/
 # Checkpoint incremental de l'enrichissement LLM (regenerable via enrich.py)
 data/silver/.ai_responses_checkpoint.jsonl
 
-# Bases DuckDB générées par le pipeline
-*.duckdb
+# Fichiers temporaires DuckDB (le .duckdb de gold lui-meme est versionne :
+# le correcteur ne peut pas relancer LMStudio + tout le pipeline localement)
 *.duckdb.wal
 
 # Artefacts dbt
