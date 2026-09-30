@@ -1,0 +1,22 @@
+.venv/
+__pycache__/
+*.pyc
+
+.env
+
+# Dumps bruts volumineux, reconstruits par scrape_bronze.py
+data/bronze/raw_json/
+
+# Checkpoint incremental de l'enrichissement LLM (regenerable via enrich.py)
+data/silver/.ai_responses_checkpoint.jsonl
+
+# Bases DuckDB générées par le pipeline
+*.duckdb
+*.duckdb.wal
+
+# Artefacts dbt
+dbt/benchmark/target/
+dbt/benchmark/dbt_packages/
+dbt/benchmark/logs/
+
+.streamlit/secrets.toml

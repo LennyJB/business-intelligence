@@ -1,0 +1,22 @@
+name: 'benchmark'
+version: '1.0.0'
+config-version: 2
+
+profile: 'benchmark'
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  benchmark:
+    staging:
+      # Table plutot que view : une view re-executerait read_parquet() sur les
+      # fichiers silver a chaque requete, avec un chemin relatif resolu au
+      # moment de la lecture (pas de la creation) -- casse des qu'un process
+      # tiers (ex. Streamlit) ouvre le .duckdb depuis un autre repertoire de
+      # travail. En table, les donnees sont copiees une fois dans le fichier :
+      # la base gold devient autonome et portable.
+      +materialized: table
+    marts:
+      +materialized: table

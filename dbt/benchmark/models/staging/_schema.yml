@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg_questions
+    columns:
+      - name: question_id
+        tests:
+          - unique
+          - not_null
+      - name: category
+        tests:
+          - not_null
+      - name: question_type
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['multiple', 'boolean']
+      - name: difficulty
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['easy', 'medium', 'hard']
+
+  - name: stg_ai_responses
+    columns:
+      - name: question_id
+        tests:
+          - not_null
+      - name: model_name
+        tests:
+          - not_null
+      - name: prompt_variant
+        tests:
+          - not_null
+
+  - name: stg_responses_enriched
+    columns:
+      - name: question_id
+        tests:
+          - not_null
